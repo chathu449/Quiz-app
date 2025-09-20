@@ -1,0 +1,44 @@
+﻿@model QuizApp.Models.ViewModels.QuizViewModel
+
+@if (Model.Questions.Any())
+{
+	
+	<body style="background-color: #e7cade;">
+ 
+
+	<form asp-controller ="Quiz" asp-action="submit"method="post" >
+		<div class = "mt-4">
+			<br >
+	<h1 style="text-align: center;">Sample Java Questions - (@Model.Questions.Count questions)</h1>
+	@for (int i = 0; i< Model.Questions.Count;i++)
+			{
+				<h3>@Model.Questions[i].Text</h3>
+				<div>
+					@foreach(var option in Model.Questions[i].Options)
+					{
+						<p>
+							<label>
+							<input 
+								type="radio" 
+								value="@option.Value"
+								name="userAnswers[@i]"
+								/>
+							@option.Text
+						</label>
+					</p>
+					}
+				</div>
+			}
+		</div>
+
+		<div>
+  <button type="submit" class="btn" style="background-color:#006e51; color: white;">
+    Submit
+  </button>
+</div>
+
+
+	</form>
+	</body>
+	
+}
